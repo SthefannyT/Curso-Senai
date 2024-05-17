@@ -1,0 +1,39 @@
+public class Caminhao extends Veiculo{
+    private int qtde_carretas;
+    private double segundoTanque;
+
+    public Caminhao() {
+    }
+
+    public Caminhao(String marca, String modelo, double capacidadeTanque, double consumo, double velocidadeMaxima, double velocidadeAtual, double velocidadeMaximaPista, double hodometro, double combustivel, int qtde_carretas, double segundoTanque) {
+        super(marca, modelo, capacidadeTanque, consumo, velocidadeMaxima, velocidadeAtual, velocidadeMaximaPista, hodometro, combustivel);
+        this.qtde_carretas = qtde_carretas;
+        this.segundoTanque = segundoTanque;
+    }
+
+    public double getSegundoTanque() {
+        return segundoTanque;
+    }
+
+    public void setSegundoTanque(double segundoTanque) {
+        this.segundoTanque = segundoTanque;
+    }
+
+    public int getQtde_carretas() {
+        return qtde_carretas;
+    }
+
+    public void setQtde_carretas(int qtde_carretas) {
+        this.qtde_carretas = qtde_carretas;
+    }
+
+    @Override
+    public void calculaAutonomia() {
+        this.autonomia = (this.capacidadeTanque + this.segundoTanque) * this.consumo;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " Qtde Carretas: " + this.qtde_carretas;
+    }
+}
