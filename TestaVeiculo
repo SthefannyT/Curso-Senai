@@ -1,0 +1,18 @@
+public class TestaVeiculo {
+    public static void main(String[] args) {
+        Carro carro_jetta = new Carro("Volkswagen","TSI 2.0 Turbo",50,7,260,0,110,1000,50,510);
+        Carro carro_golf = new Carro("Volkswagen","TSI 2.0 Turbo",50,7,260,0,110,1000,50,510);
+
+        System.out.println(carro_jetta);
+        carro_jetta.setCapacidadePortaMalas(515);
+
+        System.out.println(carro_golf);
+        System.out.println(carro_golf.getConsumo());
+
+        Caminhao caminhao_fh540 = new Caminhao();
+        caminhao_fh540.setMarca("Volvo");
+        caminhao_fh540.setModelo("FH 540");
+        caminhao_fh540.setQtde_carretas(2);
+        System.out.println(caminhao_fh540);
+    }
+}
