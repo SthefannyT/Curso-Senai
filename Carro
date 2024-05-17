@@ -1,0 +1,24 @@
+public class Carro extends Veiculo{
+    private int capacidadePortaMalas;    // Capacidade em litros do porta-malas
+
+    public Carro() {}
+
+    public Carro(String marca, String modelo, double capacidadeTanque, double consumo, double velocidadeMaxima, double velocidadeAtual, double velocidadeMaximaPista, double hodometro, double combustivel, int capacidadePortaMalas) {
+        super(marca, modelo, capacidadeTanque, consumo, velocidadeMaxima, velocidadeAtual, velocidadeMaximaPista, hodometro, combustivel);
+
+        this.capacidadePortaMalas = capacidadePortaMalas;
+    }
+
+    public int getCapacidadePortaMalas() {
+        return capacidadePortaMalas;
+    }
+
+    public void setCapacidadePortaMalas(int capacidadePortaMalas) {
+        this.capacidadePortaMalas = capacidadePortaMalas;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " Capacidade Porta-malas: " + this.capacidadePortaMalas;
+    }
+}
