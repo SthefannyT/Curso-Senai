@@ -1,0 +1,154 @@
+public class Veiculo {
+    protected String marca;
+    protected String modelo;
+    protected double capacidadeTanque;
+    protected double combustivel;
+    protected double consumo;
+    protected double autonomia;
+    protected double velocidadeMaxima;
+    protected double velocidadeMedia;
+    protected double velocidadeMaximaPista;
+    protected double hodometro;
+    protected boolean infligindoLeiVelmaxima;
+
+    public Veiculo() {}
+
+    public Veiculo(String marca, String modelo, double capacidadeTanque, double consumo,
+                 double velocidadeMaxima, double velocidadeAtual, double velocidadeMaximaPista,
+                 double hodometro, double combustivel) {
+
+        this.marca = marca;
+        this.modelo = modelo;
+        this.capacidadeTanque = capacidadeTanque;
+        this.consumo = consumo;
+        this.velocidadeMaxima = velocidadeMaxima;
+        this.velocidadeMedia = velocidadeAtual;
+        this.velocidadeMaximaPista = velocidadeMaximaPista;
+        this.hodometro = hodometro;
+        this.combustivel = combustivel;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public double getCapacidadeTanque() {
+        return capacidadeTanque;
+    }
+
+    public void setCapacidadeTanque(double capacidadeTanque) {
+        this.capacidadeTanque = capacidadeTanque;
+    }
+
+    public double getConsumo() {
+        return consumo;
+    }
+
+    public void setConsumo(double consumo) {
+        this.consumo = consumo;
+    }
+
+    public double getAutonomia() {
+        return autonomia;
+    }
+
+    public void calculaAutonomia() {
+        this.autonomia = this.capacidadeTanque * this.consumo;
+    }
+
+    public double getVelocidadeMaxima() {
+        return velocidadeMaxima;
+    }
+
+    public void setVelocidadeMaxima(double velocidadeMaxima) {
+        this.velocidadeMaxima = velocidadeMaxima;
+    }
+
+    public double getVelocidadeMedia() {
+        return velocidadeMedia;
+    }
+
+    public void setVelocidadeMedia(double velocidadeAtual) {
+        this.velocidadeMedia = velocidadeAtual;
+
+        verificaSeInfligindoLeiVelmaxima();
+    }
+
+    public double getVelocidadeMaximaPista() {
+        return velocidadeMaximaPista;
+    }
+
+    public void setVelocidadeMaximaPista(double velocidadeMaximaPista) {
+        this.velocidadeMaximaPista = velocidadeMaximaPista;
+        verificaSeInfligindoLeiVelmaxima();
+    }
+
+    public double getHodometro() {
+        return hodometro;
+    }
+
+    public void executarPercurso(double kmRodado, double velocidadeMedia) {
+        if ((kmRodado <= 0) || (velocidadeMedia <= 0) || (velocidadeMedia > this.velocidadeMaxima)) {
+            if (kmRodado <= 0) {
+                System.out.println("Km rodado deve ser superior a 0!");
+            }
+
+            if (velocidadeMedia <= 0) {
+                System.out.println("Velocidade média deve ser superior a 0!");
+            }
+
+            if (velocidadeMedia > this.velocidadeMaxima) {
+                System.out.printf("Velocidade média deve ser inferior a velocidade máxima (%f) !",this.velocidadeMaxima);
+            }
+        }
+        else {
+            this.hodometro = this.hodometro + kmRodado;  // Corrijo o Hodômetro
+            corrigeCombustivel(kmRodado); // Corrijo a combustível presente no tanque
+        }
+    }
+
+    public boolean isInfligindoLeiVelmaxima() {
+        return infligindoLeiVelmaxima;
+    }
+
+    public void verificaSeInfligindoLeiVelmaxima() {
+        if (this.velocidadeMedia > this.velocidadeMaximaPista) {
+            this.infligindoLeiVelmaxima = true;
+        }
+        else {
+            this.infligindoLeiVelmaxima = false;
+        }
+    }
+
+    public void corrigeCombustivel(double kmRodado){
+        this.combustivel = this.combustivel - (kmRodado/ this.consumo);
+    }
+
+    public double getCombustivel() {
+        return combustivel;
+    }
+
+    public void setCombustivel(double combustivel) {
+        this.combustivel = combustivel;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(" Marca: %s \n" +
+                             "Modelo: %s \n",
+                             this.marca,
+                             this.modelo);
+    }
+}
